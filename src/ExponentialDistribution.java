@@ -18,24 +18,11 @@ public class ExponentialDistribution {
         this.lambda = lambda;
     }
 
-//    public void generateExponentialDistribution(double[] array) {
-//        for (int i = 0; i < array.length; i++) {
-//            array[i] = Math.log(1 - Math.random())/(-lambda);
-//        }
-//        Arrays.sort(array);
-//        for (int i = 0; i < array.length; i++) {
-//            System.out.println(array[i]);
-//        }
-//    }
-
     public double[] generateExponentialDistribution(double[] array) {
         for (int i = 0; i < array.length; i++) {
             array[i] = Math.log(1 - Math.random())/(-lambda);
         }
         Arrays.sort(array);
-//        for (int i = 0; i < array.length; i++) {
-//            System.out.println(array[i]);
-//        }
         return array;
     }
 }
