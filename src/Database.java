@@ -51,31 +51,6 @@ public class Database {
         return createKeysArray(emptyKeysArray());
     }
 
-//    private void showArrays(double[] keysArray, double[] valuesArray, int range) {
-//        for (int i = 0; i < range; i++) {
-//            System.out.print(keysArray[i] + ", ");
-//        }
-//        System.out.println();
-//        for (int i = 0; i < range; i++) {
-//        System.out.print(valuesArray[i] + ", ");
-//        }
-//    }
-//
-//    public void showArrays() {
-//        showArrays(getKeysArray(), getValuesArray(), getRange());
-//    }
-
-//    public void showArrays() {
-//        for (int i = 0; i < getRange(); i++) {
-//            System.out.print(keysArray[i] + " ");
-//        }
-//        System.out.println();
-//        for (int i = 0; i < getRange(); i++) {
-//            System.out.print(valuesArray[i] + " ");
-//        }
-//    }
-
-
     private void fillDatabase(double[] keysArray, double[] valuesArray, int range) {
         for (int i = 0; i < range; i++) {
             database.put(keysArray[i], valuesArray[i]);
@@ -86,82 +61,6 @@ public class Database {
 
     public void createDatabase() {
         fillDatabase(getKeysArray(), getValuesArray(), getRange());
-
-
-        //DEBUG ONLY!
-//        showArrays();
     }
 
-
-
-
-    //-------------------------------------------------------------------------------------------------------------
-
-    public void toWrite(HashMap<Double, Double> database) {
-        try{
-            File file = new File("src/output.txt");
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(database);
-            oos.flush();
-            oos.close();
-            fos.close();
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void toWrite2(HashMap<Double,Double> database) {
-        try {
-            File fileTwo = new File("src/output.txt");
-            FileOutputStream fos = new FileOutputStream(fileTwo);
-            PrintWriter pw = new PrintWriter(fos);
-
-            for (Map.Entry<Double, Double> m : database.entrySet()) {
-                pw.println(m.getKey() + "=" + m.getValue());
-            }
-            pw.flush();
-            pw.close();
-            fos.close();
-        } catch (Exception e) {
-        }
-    }
-
-
-
-
-
-
-
-//    private double getKey(int index){
-//        Set<Double> keys = database.keySet();
-//        return keys.iterator().next();
-//    }
-//    public double getKeyPoint(int index) {
-//        double[] keysArray = new double[getRange()];
-//        for (int i = 0; i < keysArray.length; i++) {
-//            keysArray[i] = getKey(i);
-//        }
-//        return keysArray[index];
-//    }
-//
-//    private ArrayList<Double> valuesToArrayList() {
-//        return new ArrayList<>(database.values());
-//    }
-//
-//    private double getValue(int index) {
-//        return valuesToArrayList().get(index);
-//    }
-//
-//    public double getValuePoint(int index) {
-//        double[] valuesArray = new double[getRange()];
-//        for (int i = 0; i < valuesArray.length; i++) {
-//            valuesArray[i] = getValue(i);
-//        }
-//        return valuesArray[index];
-//    }
 }
