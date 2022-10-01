@@ -1,6 +1,6 @@
 package src;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class ExponentialDistribution {
 
@@ -14,8 +14,9 @@ public class ExponentialDistribution {
         return lambda;
     }
 
-    public void setLambda(double lambda) {
-        this.lambda = lambda;
+    public void setLambda() {
+        Scanner takeData = new Scanner(System.in);
+        this.lambda = takeData.nextInt();
     }
 
     public double[] generateExponentialDistribution(double[] array) {

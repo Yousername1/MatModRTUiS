@@ -20,6 +20,9 @@ public class Database {
         Scanner takeData = new Scanner(System.in);
         System.out.print("Введите количество чисел в последовательности: ");
         this.range = takeData.nextInt();
+        System.out.println();
+        System.out.print("Введите параметр экспоненциального распределения: ");
+        distribution.setLambda();
     }
 
     private double[] emptyKeysArray(){
