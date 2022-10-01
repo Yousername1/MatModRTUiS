@@ -1,13 +1,14 @@
 package src;
 
-import java.io.*;
 import java.util.*;
 
 public class Database {
     private int range;
     HashMap<Double, Double> database = new HashMap<Double, Double>();
 
-    ExponentialDistribution distribution = new ExponentialDistribution(1.0);
+    ExponentialDistribution distribution = new ExponentialDistribution();
+
+    ExponentialPDF exponentialPDF = new ExponentialPDF();
 
     public static double[] keysArray;
     public static double[] valuesArray;
@@ -16,14 +17,18 @@ public class Database {
         return range;
     }
 
-    public void setRange() {
+    public void setParams() {
         Scanner takeData = new Scanner(System.in);
         System.out.print("Введите количество чисел в последовательности: ");
         this.range = takeData.nextInt();
         System.out.println();
         System.out.print("Введите параметр экспоненциального распределения: ");
         distribution.setLambda();
+//        exponentialPDF.setLambda();
+
     }
+
+
 
     private double[] emptyKeysArray(){
         return keysArray = new double[getRange()];
@@ -36,6 +41,8 @@ public class Database {
 
     private double[] createValuesArray(double[] array) {
         return distribution.generateExponentialDistribution(array);
+//        return exponentialPDF.generateExponentialPDF(array);
+
     }
 
     public double[] getValuesArray() {

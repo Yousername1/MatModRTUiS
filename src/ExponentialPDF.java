@@ -1,11 +1,13 @@
 package src;
 
-import java.util.*;
+import javax.xml.crypto.Data;
+import java.util.Arrays;
+import java.util.Collections;
 
-public class ExponentialDistribution extends Lambda {
-    public double[] generateExponentialDistribution(double[] array) {
+public class ExponentialPDF extends Lambda {
+    public double[] generateExponentialPDF(double[] array) {
         for (int i = 0; i < array.length; i++) {
-            array[i] = Math.log(1 - Math.random())/(-getLambda());
+            array[i] = (getLambda()) * Math.exp(-getLambda() * Math.random());
         }
         Arrays.sort(array);
         return array;
@@ -20,4 +22,6 @@ public class ExponentialDistribution extends Lambda {
                 .toArray();
         return reverseArray;
     }
+
+
 }

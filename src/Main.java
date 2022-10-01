@@ -1,14 +1,12 @@
 package src;
 
-import java.awt.*;
-
 public class Main {
 
     public static Database database = new Database();
 
     public static void main(String[] args) {
 
-        database.setRange();
+        database.setParams();
         database.createDatabase();
 
         PlotBuilder plot = new PlotBuilder();
