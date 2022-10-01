@@ -1,2 +1,0 @@
-# MatModRTUiS
-Labs and Kursach

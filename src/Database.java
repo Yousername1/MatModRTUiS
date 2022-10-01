@@ -5,15 +5,12 @@ import java.util.*;
 
 public class Database {
     private int range;
-
-    public Database() {
-        HashMap<Double, Double> database = new HashMap<Double, Double>();
-        toWrite2(database);
-    }
-
     HashMap<Double, Double> database = new HashMap<Double, Double>();
 
     ExponentialDistribution distribution = new ExponentialDistribution(1.0);
+
+    private double[] keysArray;
+    private double[] valuesArray;
 
     public int getRange() {
         return range;
@@ -25,13 +22,21 @@ public class Database {
         this.range = takeData.nextInt();
     }
 
+    private double[] emptyKeysArray(){
+        return keysArray = new double[getRange()];
+    }
+
     private double[] emptyValuesArray(){
-        return new double[getRange()];
+        return valuesArray = new double[getRange()];
     }
 
 
-    public double[] createValuesArray() {
-        return distribution.generateExponentialDistribution(emptyValuesArray());
+    private double[] createValuesArray(double[] array) {
+        return distribution.generateExponentialDistribution(array);
+    }
+
+    public double[] getValuesArray() {
+        return createValuesArray(emptyValuesArray());
     }
 
     private double[] createKeysArray(double[] array) {
@@ -42,8 +47,8 @@ public class Database {
         return array;
     }
 
-    public double[] createKeyArray(){
-        return createKeysArray(emptyValuesArray());
+    public double[] getKeysArray() {
+        return createKeysArray(emptyKeysArray());
     }
 
     private void fillDatabase(double[] keysArray, double[] valuesArray, int range) {
@@ -51,12 +56,14 @@ public class Database {
             database.put(keysArray[i], valuesArray[i]);
         }
         Map<Double, Double> keySortedDatabase = new TreeMap<>(database);
-        keySortedDatabase.entrySet().forEach(System.out::println); //????????????????????????????????????????????!!!!!!!!!!!!
+        keySortedDatabase.entrySet().forEach(System.out::println); //????????????????????????????????????????????
     }
 
     public void createDatabase() {
-        fillDatabase(createKeysArray(emptyValuesArray()), createValuesArray(), getRange());
+        fillDatabase(getKeysArray(), getValuesArray(), getRange());
     }
+
+    //-------------------------------------------------------------------------------------------------------------
 
     public void toWrite(HashMap<Double, Double> database) {
         try{

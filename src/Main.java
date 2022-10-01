@@ -8,8 +8,7 @@ public class Main {
         database.setRange();
         database.createDatabase();
 
-
-//        PlotBuilder plot = new PlotBuilder();
-//        plot.showWindow();
+        PlotBuilder plot = new PlotBuilder();
+        plot.showWindow();
     }
 }
