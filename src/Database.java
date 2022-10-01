@@ -9,8 +9,8 @@ public class Database {
 
     ExponentialDistribution distribution = new ExponentialDistribution(1.0);
 
-    private double[] keysArray;
-    private double[] valuesArray;
+    public static double[] keysArray;
+    public static double[] valuesArray;
 
     public int getRange() {
         return range;
@@ -51,6 +51,31 @@ public class Database {
         return createKeysArray(emptyKeysArray());
     }
 
+//    private void showArrays(double[] keysArray, double[] valuesArray, int range) {
+//        for (int i = 0; i < range; i++) {
+//            System.out.print(keysArray[i] + ", ");
+//        }
+//        System.out.println();
+//        for (int i = 0; i < range; i++) {
+//        System.out.print(valuesArray[i] + ", ");
+//        }
+//    }
+//
+//    public void showArrays() {
+//        showArrays(getKeysArray(), getValuesArray(), getRange());
+//    }
+
+//    public void showArrays() {
+//        for (int i = 0; i < getRange(); i++) {
+//            System.out.print(keysArray[i] + " ");
+//        }
+//        System.out.println();
+//        for (int i = 0; i < getRange(); i++) {
+//            System.out.print(valuesArray[i] + " ");
+//        }
+//    }
+
+
     private void fillDatabase(double[] keysArray, double[] valuesArray, int range) {
         for (int i = 0; i < range; i++) {
             database.put(keysArray[i], valuesArray[i]);
@@ -61,7 +86,14 @@ public class Database {
 
     public void createDatabase() {
         fillDatabase(getKeysArray(), getValuesArray(), getRange());
+
+
+        //DEBUG ONLY!
+//        showArrays();
     }
+
+
+
 
     //-------------------------------------------------------------------------------------------------------------
 
@@ -104,7 +136,8 @@ public class Database {
 
 
 
-//    private double getKey(int number){
+
+//    private double getKey(int index){
 //        Set<Double> keys = database.keySet();
 //        return keys.iterator().next();
 //    }
