@@ -6,9 +6,9 @@ public class Database {
     private int range;
     HashMap<Double, Double> database = new HashMap<Double, Double>();
 
-    ExponentialDistribution distribution = new ExponentialDistribution();
+    Quantile distribution = new Quantile();
 
-    ExponentialPDF exponentialPDF = new ExponentialPDF();
+    CDF cdf = new CDF();
 
     public static double[] keysArray;
     public static double[] valuesArray;
@@ -21,7 +21,7 @@ public class Database {
 
     private void setFunction() {
         System.out.print("Введите название функции, график которой нужно построить " +
-                "(QUANTILE, PDF): ");
+                "(QUANTILE, CDF): ");
         Scanner takeData = new Scanner(System.in);
         this.function = takeData.nextLine();
     }
@@ -40,9 +40,11 @@ public class Database {
         if(getFunction().equalsIgnoreCase("QUANTILE") || getFunction().startsWith("Q")) {
             System.out.print("Введите параметр экспоненциального распределения: ");
             distribution.setLambda();
-        } else if(getFunction().equalsIgnoreCase("PDF") || getFunction().startsWith("P")) {
+            System.out.println();
+        } else if(getFunction().equalsIgnoreCase("CDF") || getFunction().startsWith("C")) {
             System.out.print("Введите параметр экспоненциального распределения: ");
-            exponentialPDF.setLambda();
+            cdf.setLambda();
+            System.out.println();
         }
 
     }
@@ -59,8 +61,8 @@ public class Database {
     private double[] createValuesArray(double[] array) throws UnsupportedOperationException  {
         if(getFunction().equalsIgnoreCase("QUANTILE") || getFunction().startsWith("Q")) {
             return distribution.generateExponentialDistribution(array);
-        } else if(getFunction().equalsIgnoreCase("PDF") || getFunction().startsWith("P")) {
-            return exponentialPDF.generateExponentialPDF(array);
+        } else if(getFunction().equalsIgnoreCase("CDF") || getFunction().startsWith("C")) {
+            return cdf.generateCDF(array);
         }
         throw new UnsupportedOperationException();
     }
