@@ -1,10 +1,20 @@
 package src;
 
+import java.io.IOException;
 import java.util.*;
+import org.jfree.chart.*;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+//import javax.*;
+import java.io.File;
 
 public class Database {
     private int range;
     HashMap<Double, Double> database = new HashMap<Double, Double>();
+    XYSeries xySeries = new XYSeries("Quantile");
+    XYSeriesCollection dataset = new XYSeriesCollection();
 
     Quantile distribution = new Quantile();
 
@@ -84,15 +94,30 @@ public class Database {
     }
 
     private void fillDatabase(double[] keysArray, double[] valuesArray, int range) {
-        for (int i = 0; i < range; i++) {
+        for (int i = 0; i < getRange(); i++) {
             database.put(keysArray[i], valuesArray[i]);
         }
         Map<Double, Double> keySortedDatabase = new TreeMap<>(database);
         keySortedDatabase.entrySet().forEach(System.out::println); //????????????????????????????????????????????
     }
 
+//    public void createDatabase() {
+//        fillDatabase(getKeysArray(), getValuesArray(), getRange());
+//    }
+
+    private void fillSeries(double[] keysArray, double[] valuesArray, int range) {
+        for (int i = 0; i < getRange(); i++) {
+            xySeries.add(keysArray[i], valuesArray[i]);
+        }
+    }
+
     public void createDatabase() {
-        fillDatabase(getKeysArray(), getValuesArray(), getRange());
+        fillSeries(getKeysArray(), getValuesArray(), getRange());
+        dataset.addSeries(xySeries);
+    }
+
+    public XYSeriesCollection getDatabase() {
+        return dataset;
     }
 
 }

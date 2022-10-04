@@ -27,9 +27,15 @@ public class DrawingCanvas extends JComponent{
 
         Path2D.Double p = new Path2D.Double();
 
+//        for (int i = 0; i < database.getRange() - 1; i++) {
+//            p.moveTo(arrayX[i] + 100, (100 - arrayY[i])*5);
+//            p.lineTo(arrayX[i+1] + 100, (100 - arrayY[i+1])*5);
+//            g2d.draw(p);
+//        }
+
         for (int i = 0; i < database.getRange() - 1; i++) {
-            p.moveTo(arrayX[i] + 100, (100 - arrayY[i])*5);
-            p.lineTo(arrayX[i+1] + 100, (100 - arrayY[i+1])*5);
+            p.moveTo(arrayX[i] + 100, (arrayY[i])*100 + 100);
+            p.lineTo(arrayX[i+1] + 100, (arrayY[i+1])*100 + 100);
             g2d.draw(p);
         }
     }
