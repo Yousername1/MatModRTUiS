@@ -9,15 +9,6 @@ public class ExponentialDistribution extends Lambda {
         }
         Arrays.sort(array);
         return array;
-//        return reverseSorting(array);
     }
 
-    public double[] reverseSorting(double[] array) {
-        double[] reverseArray = Arrays.stream(array)
-                .boxed()
-                .sorted(Collections.reverseOrder())
-                .mapToDouble(Double::doubleValue)
-                .toArray();
-        return reverseArray;
-    }
 }

@@ -13,8 +13,21 @@ public class Database {
     public static double[] keysArray;
     public static double[] valuesArray;
 
+    private String function;
+
     public int getRange() {
         return range;
+    }
+
+    private void setFunction() {
+        System.out.print("Введите название функции, график которой нужно построить " +
+                "(QUANTILE, PDF): ");
+        Scanner takeData = new Scanner(System.in);
+        this.function = takeData.nextLine();
+    }
+
+    public String getFunction() {
+        return function;
     }
 
     public void setParams() {
@@ -22,13 +35,17 @@ public class Database {
         System.out.print("Введите количество чисел в последовательности: ");
         this.range = takeData.nextInt();
         System.out.println();
-        System.out.print("Введите параметр экспоненциального распределения: ");
-        distribution.setLambda();
-//        exponentialPDF.setLambda();
+        setFunction();
+        System.out.println();
+        if(getFunction().equalsIgnoreCase("QUANTILE") || getFunction().startsWith("Q")) {
+            System.out.print("Введите параметр экспоненциального распределения: ");
+            distribution.setLambda();
+        } else if(getFunction().equalsIgnoreCase("PDF") || getFunction().startsWith("P")) {
+            System.out.print("Введите параметр экспоненциального распределения: ");
+            exponentialPDF.setLambda();
+        }
 
     }
-
-
 
     private double[] emptyKeysArray(){
         return keysArray = new double[getRange()];
@@ -39,10 +56,13 @@ public class Database {
     }
 
 
-    private double[] createValuesArray(double[] array) {
-        return distribution.generateExponentialDistribution(array);
-//        return exponentialPDF.generateExponentialPDF(array);
-
+    private double[] createValuesArray(double[] array) throws UnsupportedOperationException  {
+        if(getFunction().equalsIgnoreCase("QUANTILE") || getFunction().startsWith("Q")) {
+            return distribution.generateExponentialDistribution(array);
+        } else if(getFunction().equalsIgnoreCase("PDF") || getFunction().startsWith("P")) {
+            return exponentialPDF.generateExponentialPDF(array);
+        }
+        throw new UnsupportedOperationException();
     }
 
     public double[] getValuesArray() {
