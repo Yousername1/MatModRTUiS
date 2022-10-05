@@ -112,6 +112,7 @@ public class Database {
     }
 
     public void createDatabase() {
+        fillDatabase(getKeysArray(), getValuesArray(), getRange());
         fillSeries(getKeysArray(), getValuesArray(), getRange());
         dataset.addSeries(xySeries);
     }
